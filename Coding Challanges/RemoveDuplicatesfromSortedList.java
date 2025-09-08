@@ -1,6 +1,6 @@
-import MergeTwoSortedLists.MergeSortedList.ListNode;
+// import MergeTwoSortedLists.MergeSortedList.ListNode;
 
-public class RemoveDuplicatesfromSortedList {
+// public class RemoveDuplicatesfromSortedList {
     // public ListNode deleteDuplicates(ListNode head) {
         // return delete(head);
     // }
@@ -19,4 +19,4 @@ public class RemoveDuplicatesfromSortedList {
 
     //     return head;
     // }
-}
+// }
