@@ -10,9 +10,8 @@ public class PlusOne {
         System.out.println(Arrays.toString(result));
 
     }
-
+    
     public static int[] addOne(int[] digits) {
-
         for (int i = digits.length - 1; i >= 0; i--) {
             if (digits[i] < 9) {
                 digits[i]++;
@@ -20,7 +19,6 @@ public class PlusOne {
             }
             digits[i] = 0;
         }
-
         int[] result = new int[digits.length + 1];
         result[0] = 1;
         return result;
