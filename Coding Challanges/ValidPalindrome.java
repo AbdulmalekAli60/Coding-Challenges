@@ -45,4 +45,23 @@ public class ValidPalindrome {
 
         return false;
     }
+
+            
+        // String processedString = s.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
+
+        // if(processedString.isEmpty()) return true;
+
+        // int i = 0;
+        // int j = processedString.length() - 1; 
+
+        // while(i < j){
+        //     if(processedString.charAt(i) != processedString.charAt(j)){
+        //         return false;
+        //     }
+
+        //     i++;
+        //     j--;
+        // }
+
+        // return true;
 }
