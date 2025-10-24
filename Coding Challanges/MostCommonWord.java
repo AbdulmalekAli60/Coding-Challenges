@@ -9,52 +9,44 @@ public class MostCommonWord {
 
     }
 
-    public String mostCommonWord(String paragraph, String[] banned) {
+ public String mostCommonWord(String paragraph, String[] banned) {
 
-        String paragraphLowerCase = paragraph.toLowerCase();
+        String paragraphLowerCase = paragraph.toLowerCase(); // make pharagraph lower case
 
         HashMap<String, Integer> wordsFreq = new HashMap<>();
+        HashSet<String> bannedWords = new HashSet<>(Arrays.asList(banned));
 
-        List<String> words = new ArrayList<>(Arrays.asList(paragraphLowerCase.split("[!?',;.]|\\s+")));
+        String[] words = paragraphLowerCase.split("[^a-zA-Z]+"); // create new array from pharaghaph but without punctiasions and spaces
 
-        for (int i = 0; i < words.size(); i++) {
 
-            for (int j = 0; j < banned.length; j++) {
-                if (words.get(i).equals(banned[j])) {
-                    words.remove(i);
-                } else {
-                    continue;
-                }
+        for(String word : words) {
+            // Skip empty strings and banned words
+            if(!word.isEmpty() && !bannedWords.contains(word)) {
+                wordsFreq.put(word, wordsFreq.getOrDefault(word, 0) + 1);
             }
         }
 
-        // for(String x : words){
+        // adding words and frequencis in the hashmap
+        for(String w : words){
 
-        // if(x.equals(" ")){
-        // words.remove(x);
-        // }
-        // }
-        // System.out.println(words.size());
-
-        for (String w : words) {
-
-            if (!wordsFreq.containsKey(w)) {
+            if(!wordsFreq.containsKey(w)){
                 wordsFreq.put(w, 1);
-            } else {
+            }else{
                 int freq = wordsFreq.get(w);
                 freq++;
                 wordsFreq.put(w, freq);
             }
         }
 
+        // getting max value in in the hash map
         int maxFreq = 0;
         String maxValeuKey = "";
 
-        for (Map.Entry<String, Integer> entry : wordsFreq.entrySet()) {
+        for(Map.Entry<String, Integer> entry: wordsFreq.entrySet()){
             String currentKey = entry.getKey();
             int currentValue = entry.getValue();
 
-            if (currentValue > maxFreq) {
+            if(currentValue > maxFreq){
                 maxFreq = currentValue;
                 maxValeuKey = currentKey;
             }
