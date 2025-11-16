@@ -1,43 +1,39 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GroupAnagrams {
 
     public static void main(String[] args) {
+        String[] strs = {"eat","tea","tan","ate","nat","bat"};
 
+        List<List<String>> result = groupAnagrams(strs);
+
+        System.out.println(result);
     }
 
-    public List<List<String>> groupAnagrams(String[] strs) {
+    public static List<List<String>> groupAnagrams(String[] strs) {
 
         List<List<String>> resultList = new ArrayList<>(); // list of lists
 
-        Map<Integer, List<String>> groupBySum = new HashMap<>();
+        Map<String, List<String>> groupBySum = new HashMap<>();
 
-        for (String currentString : strs) { // loop over strings
+        for(String currentString : strs){ // loop over strings
 
-            char[] strToChar = currentString.toCharArray(); // convert current str to char array
+            int[] frequencyArray = new int[26]; // cretae array for each word
 
-            int sum = 0;
-            for (char currentLetter : strToChar) { // loop over the char array
+            for(char currentLetter : currentString.toCharArray()){ // loop over the char array
 
-                sum += currentLetter; // get the current value of each char
+                frequencyArray[(int) currentLetter - 97]++;
             }
 
-            System.out.println("The value that will be inserted to map: " + currentString + " " + sum);
+            String key = Arrays.toString(frequencyArray);
 
-            if (!groupBySum.containsKey(sum)) {
-                groupBySum.put(sum, new ArrayList<>());
+            if(!groupBySum.containsKey(key)){
+                groupBySum.put(key, new ArrayList<>());
             }
 
-            groupBySum.get(sum).add(currentString);
+            groupBySum.get(key).add(currentString);
         }
 
-        for (List<String> anagrams : groupBySum.values()) {
-            resultList.add(anagrams);
-        }
-
-        return resultList;
+        return new ArrayList<>(groupBySum.values());
     }
 }
